@@ -56,7 +56,6 @@ pbar = ProgressBar(widgets=widgets, maxval = i).start()
 
 print i
 
-a = 0
 for word in either_drugs:
     if word in only_mdma and word in only_lsd and word not in both_drugs:
         both_drugs[word] = (only_mdma[word] + only_lsd[word])/2 #Taking Average
@@ -66,8 +65,6 @@ for word in either_drugs:
         only_lsd.pop(word)
     if word in both_drugs and word in only_mdma:
         only_mdma.pop(word)
-    #a = a + 1
-    pbar.update(a)
     
 pbar.finish()
 
@@ -88,9 +85,23 @@ for x in range(10):
 print highest_only_lsd
 
 plt.bar(range(len(highest_only_lsd)), highest_only_lsd.values(), align='center')
-plt.xticks(range(len(highest_only_lsd)), highest_only_lsd.keys())
+plt.xticks(range(len(highest_only_lsd)), highest_only_lsd.keys(),rotation='vertical')
+plt.margins(0.03)
+plt.title("10 Most Occurring Terms: LSD Specific")
+plt.ylabel("Word Count")
+plt.tight_layout()
 plt.savefig('only_lsd.png')
-
 plt.show()
+
+plt.bar(range(len(highest_only_mdma)), highest_only_mdma.values(), align='center')
+plt.xticks(range(len(highest_only_mdma)), highest_only_mdma.keys(),rotation='vertical')
+plt.margins(0.03)
+plt.title("10 Most Occurring Terms: MDMA Specific")
+plt.ylabel("Word Count")
+plt.tight_layout()
+plt.savefig('only_mdma.png')
+plt.show()
+
+
 
 
